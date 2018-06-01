@@ -1,0 +1,10 @@
+
+platform :ios, '8.0'
+
+target 'RunLoopDemo’ do
+pod ‘Masonry’,’1.0.0’
+
+end
+
+
+inhibit_all_warnings!
