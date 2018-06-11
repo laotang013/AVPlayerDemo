@@ -84,10 +84,12 @@
 - (nonnull instancetype)init {
     return [self initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
 }
-
+//全能初始化方法
 - (nonnull instancetype)initWithSessionConfiguration:(nullable NSURLSessionConfiguration *)sessionConfiguration {
     if ((self = [super init])) {
+        
         _operationClass = [SDWebImageDownloaderOperation class];
+        //默认需要对图片进行解压
         _shouldDecompressImages = YES;
         _executionOrder = SDWebImageDownloaderFIFOExecutionOrder;
         _downloadQueue = [NSOperationQueue new];

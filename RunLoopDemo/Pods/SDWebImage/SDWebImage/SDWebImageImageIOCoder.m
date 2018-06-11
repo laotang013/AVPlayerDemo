@@ -298,20 +298,24 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
     // autorelease the bitmap context and all vars to help system to free memory when there are memory warning.
     // on iOS7, do not forget to call [[SDImageCache sharedImageCache] clearMemory];
     @autoreleasepool {
+        //获取源图像位图
         CGImageRef sourceImageRef = image.CGImage;
-        
+        //源图像尺寸、存储在CGSize结构体中
         CGSize sourceResolution = CGSizeZero;
         sourceResolution.width = CGImageGetWidth(sourceImageRef);
         sourceResolution.height = CGImageGetHeight(sourceImageRef);
+        //计算源图像总的像素点个数。
         float sourceTotalPixels = sourceResolution.width * sourceResolution.height;
         // Determine the scale ratio to apply to the input image
         // that results in an output image of the defined size.
         // see kDestImageSizeMB, and how it relates to destTotalPixels.
+        //获取原图像和目标图像的比例(以像素点个数为基数)
         float imageScale = kDestTotalPixels / sourceTotalPixels;
         CGSize destResolution = CGSizeZero;
+        //使用scale计算目标图像的宽高
         destResolution.width = (int)(sourceResolution.width*imageScale);
         destResolution.height = (int)(sourceResolution.height*imageScale);
-        
+        //9. 进行图像绘制前的准备工作
         // current color space
         CGColorSpaceRef colorspaceRef = [[self class] colorSpaceForImageRef:sourceImageRef];
         
@@ -329,6 +333,7 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
         if (destContext == NULL) {
             return image;
         }
+       //10. 设置图像插值的质量为高
         CGContextSetInterpolationQuality(destContext, kCGInterpolationHigh);
         
         // Now define the size of the rectangle to be used for the
