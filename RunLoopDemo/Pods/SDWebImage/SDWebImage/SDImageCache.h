@@ -29,10 +29,12 @@ typedef NS_OPTIONS(NSUInteger, SDImageCacheOptions) {
     /**
      * By default, we do not query disk data when the image is cached in memory. This mask can force to query disk data at the same time.
      */
+    //默认情况下，当映像缓存在内存中时，我们不会查询磁盘数据。此掩码可以强制同时查询磁盘数据。
     SDImageCacheQueryDataWhenInMemory = 1 << 0,
     /**
      * By default, we query the memory cache synchronously, disk cache asynchronously. This mask can force to query disk cache synchronously.
      */
+    //默认情况下，我们同步地查询内存缓存，异步地查询磁盘缓存。此掩码可以同步查询磁盘缓存。
     SDImageCacheQueryDiskSync = 1 << 1
 };
 
@@ -131,8 +133,8 @@ typedef void(^SDWebImageCalculateSizeBlock)(NSUInteger fileCount, NSUInteger tot
 
 /**
  * Asynchronously store an image into memory and disk cache at the given key.
- *
- * @param image           The image to store
+ * 通过给定的键异步将image存储到内存或者磁盘上
+ * @param image           The image to store 存储的图片
  * @param imageData       The image data as returned by the server, this representation will be used for disk storage
  *                        instead of converting the given image object into a storable/compressed image format in order
  *                        to save quality and CPU
@@ -187,12 +189,13 @@ typedef void(^SDWebImageCalculateSizeBlock)(NSUInteger fileCount, NSUInteger tot
 /**
  * Operation that queries the cache asynchronously and call the completion when done.
  *
- * @param key       The unique key used to store the wanted image
+ * @param key       The unique key used to store the wanted image 用于存储所需图像的唯一键
  * @param options   A mask to specify options to use for this cache query
  * @param doneBlock The completion block. Will not get called if the operation is cancelled
  *
- * @return a NSOperation instance containing the cache op
+ * @return a NSOperation instance containing the cache op 返回包含缓存op的NSOperation实例
  */
+//异步查询缓存并回调
 - (nullable NSOperation *)queryCacheOperationForKey:(nullable NSString *)key options:(SDImageCacheOptions)options done:(nullable SDCacheQueryCompletedBlock)doneBlock;
 
 /**

@@ -54,7 +54,11 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
         _imageSource = NULL;
     }
 }
-
+/*
+ 1.从网络上请求到压缩过的图片(JPEG,PNG...)
+ 2.使用这个压缩过的图片对UIImage对象进行初始化
+ 3.当UIIMage要被显示到UIImageView上面的时候，UIImage上的图片会被解压缩，然后显示到UIImageView上。
+ */
 + (instancetype)sharedCoder {
     static SDWebImageImageIOCoder *coder;
     static dispatch_once_t onceToken;
@@ -226,6 +230,8 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
 }
 
 #if SD_UIKIT || SD_WATCH
+//该方法主要用于解压缩
+//就是把UIImage绘制出来的图像再保存起来就完成了这个解码的过程。如果不考虑性能损耗
 - (nullable UIImage *)sd_decompressedImageWithImage:(nullable UIImage *)image {
     if (![[self class] shouldDecodeImage:image]) {
         return image;
@@ -233,17 +239,20 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
     
     // autorelease the bitmap context and all vars to help system to free memory when there are memory warning.
     // on iOS7, do not forget to call [[SDImageCache sharedImageCache] clearMemory];
+    //新建自动释放池，将bitmap context和临时变量都添加到池中在方法末尾自动释放以防止内存警告
     @autoreleasepool{
-        
+        //获取传入的UIImage对应的CGImageRef(位图)
         CGImageRef imageRef = image.CGImage;
+        //获取色彩空间
         CGColorSpaceRef colorspaceRef = [[self class] colorSpaceForImageRef:imageRef];
-        
+        //获取高和宽
         size_t width = CGImageGetWidth(imageRef);
         size_t height = CGImageGetHeight(imageRef);
         
         // kCGImageAlphaNone is not supported in CGBitmapContextCreate.
         // Since the original image here has no alpha info, use kCGImageAlphaNoneSkipLast
         // to create bitmap graphics contexts without alpha info.
+        //初始化bitmap graphics context 上下文
         CGContextRef context = CGBitmapContextCreate(NULL,
                                                      width,
                                                      height,
@@ -256,25 +265,34 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
         }
         
         // Draw the image into the context and retrieve the new bitmap image without alpha
+        //将CGImageRef对象画到上面生成的上下文中，且将alpha通道移除
         CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
+        //使用上下文创建位图
         CGImageRef imageRefWithoutAlpha = CGBitmapContextCreateImage(context);
+        //从位图创建UIIMage对象
         UIImage *imageWithoutAlpha = [[UIImage alloc] initWithCGImage:imageRefWithoutAlpha scale:image.scale orientation:image.imageOrientation];
+        //释放CG对象
         CGContextRelease(context);
         CGImageRelease(imageRefWithoutAlpha);
         
         return imageWithoutAlpha;
     }
 }
+//CGImageRef 就是位图(bitmap image)在Quartz 框架中的具体数据结构位图(样本)是像素的矩形阵列（Rectangular Array），每个像素对应在特定的彩色空间（color space）中的一个或多个彩色元素。关于彩色空间，当我们需要自己绘制一个bitmap图片时，只需要初始化一个位图上下文，并在上面绘制自己的图形，最后从上下文中获取我们想要的bitmap图形或者数据即可
+// 将原始图片绘制到位图上下文，然后将位图上下文保存为新的位图后返回。
 
+
+//该方法主要用于压缩
 - (nullable UIImage *)sd_decompressedAndScaledDownImageWithImage:(nullable UIImage *)image {
+    //1.先对图片解码
     if (![[self class] shouldDecodeImage:image]) {
         return image;
     }
-    
+    //2.判断是否需要压缩
     if (![[self class] shouldScaleDownImage:image]) {
         return [self sd_decompressedImageWithImage:image];
     }
-    
+    //声明压缩目标用的上下文
     CGContextRef destContext;
     
     // autorelease the bitmap context and all vars to help system to free memory when there are memory warning.

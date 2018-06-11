@@ -26,6 +26,8 @@ inline UIImage *SDScaledImageForKey(NSString * _Nullable key, UIImage * _Nullabl
     return image;
 #elif SD_UIKIT || SD_WATCH
     if ((image.images).count > 0) {
+        //对于animated image进行处理
+        //每一帧的图片都要进行scale操作
         NSMutableArray<UIImage *> *scaledImages = [NSMutableArray array];
 
         for (UIImage *tempImage in image.images) {
@@ -43,6 +45,7 @@ inline UIImage *SDScaledImageForKey(NSString * _Nullable key, UIImage * _Nullabl
 #elif SD_UIKIT
         if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
 #endif
+            //获取缩放比例
             CGFloat scale = 1;
             if (key.length >= 8) {
                 NSRange range = [key rangeOfString:@"@2x."];
@@ -55,7 +58,7 @@ inline UIImage *SDScaledImageForKey(NSString * _Nullable key, UIImage * _Nullabl
                     scale = 3.0;
                 }
             }
-
+            //生成缩放后的图片 然后返回
             UIImage *scaledImage = [[UIImage alloc] initWithCGImage:image.CGImage scale:scale orientation:image.imageOrientation];
             image = scaledImage;
         }
