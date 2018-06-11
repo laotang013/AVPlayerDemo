@@ -30,6 +30,7 @@
     UIImageView *iconImageView = [[UIImageView alloc]initWithImage:setImage];
     iconImageView.frame = CGRectMake(0, 0, 100, 100);
     [self addSubview:iconImageView];
+   
 }
 
 
@@ -59,6 +60,10 @@
     //    CGContextClipToMask(ctx, self.bounds, image.CGImage);
     //
     [image drawInRect:rect];
+    if (self.drawCircleBlock) {
+        NSString *drawStr = self.drawCircleBlock(@"drawCircle");
+        NSLog(@"drawStr %@",drawStr);
+    }
 }
 
 
