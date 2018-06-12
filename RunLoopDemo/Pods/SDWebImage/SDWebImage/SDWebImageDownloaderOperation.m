@@ -119,7 +119,10 @@ typedef NSMutableDictionary<NSString *, id> SDCallbacksDictionary;
     }
     return shouldCancel;
 }
-
+/*
+  让一个NSOperation操作开始，你可以直接调用start 或者将它添加到NSOperationQueue中，添加之后，它会在队列排到他以后自动执行。
+ */
+//重写NSOperation的start方法 在里面做处理
 - (void)start {
     @synchronized (self) {
         if (self.isCancelled) {
@@ -129,6 +132,7 @@ typedef NSMutableDictionary<NSString *, id> SDCallbacksDictionary;
         }
 
 #if SD_UIKIT
+        //进行后台任务的处理
         Class UIApplicationClass = NSClassFromString(@"UIApplication");
         BOOL hasApplication = UIApplicationClass && [UIApplicationClass respondsToSelector:@selector(sharedApplication)];
         if (hasApplication && [self shouldContinueWhenAppEntersBackground]) {
@@ -146,8 +150,11 @@ typedef NSMutableDictionary<NSString *, id> SDCallbacksDictionary;
             }];
         }
 #endif
+        //初始化session
         NSURLSession *session = self.unownedSession;
         if (!session) {
+            //如果Downloader没有传入session(self对unowedSession弱引用因为默认该变量为downloader强引用)
+             //使用defaultSessionConfiguration初始化session
             NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
             sessionConfig.timeoutIntervalForRequest = 15;
             
@@ -155,6 +162,11 @@ typedef NSMutableDictionary<NSString *, id> SDCallbacksDictionary;
              *  Create the session for this task
              *  We send nil as delegate queue so that the session creates a serial operation queue for performing all delegate
              *  method calls and completion handler calls.
+             */
+            /*
+             初始化自己管理的session
+             delegate 设置self 即需要自动实现代理方法对任务进行管理
+             delegateQueue设置nil，因此session会创建一个串行的任务队列处理代理方法和回调。
              */
             session = [NSURLSession sessionWithConfiguration:sessionConfig
                                                     delegate:self
@@ -177,7 +189,7 @@ typedef NSMutableDictionary<NSString *, id> SDCallbacksDictionary;
                 self.cachedData = cachedResponse.data;
             }
         }
-        
+        //使用request初始化dataTask
         self.dataTask = [session dataTaskWithRequest:self.request];
         self.executing = YES;
     }
@@ -193,15 +205,21 @@ typedef NSMutableDictionary<NSString *, id> SDCallbacksDictionary;
             }
         }
 #pragma clang diagnostic pop
+        //开始执行网络请求
         [self.dataTask resume];
+        //对callbacks中的每个progressBlock进行调用，并传入进度参数
+        //#define NSURLResponseUnknownLength ((long long)-1)
         for (SDWebImageDownloaderProgressBlock progressBlock in [self callbacksForKey:kProgressCallbackKey]) {
             progressBlock(0, NSURLResponseUnknownLength, self.request.URL);
         }
         __weak typeof(self) weakSelf = self;
+        //主队列通知SDWebImageDownloadStartNotification
         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotificationName:SDWebImageDownloadStartNotification object:weakSelf];
         });
     } else {
+        ////连接不成功
+        //执行回调输出错误信息
         [self callCompletionBlocksWithError:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorUnknown userInfo:@{NSLocalizedDescriptionKey : @"Task can't be initialized"}]];
         [self done];
         return;
@@ -219,13 +237,17 @@ typedef NSMutableDictionary<NSString *, id> SDCallbacksDictionary;
     }
 #endif
 }
-
+/**
+ * 重写NSOperation的cancel方法
+ */
 - (void)cancel {
     @synchronized (self) {
         [self cancelInternal];
     }
 }
-
+/**
+ * 内部方法cancel
+ */
 - (void)cancelInternal {
     if (self.isFinished) return;
     [super cancel];
@@ -251,7 +273,9 @@ typedef NSMutableDictionary<NSString *, id> SDCallbacksDictionary;
     self.executing = NO;
     [self reset];
 }
-
+/**
+ * 重设operation
+ */
 - (void)reset {
     LOCK(self.callbacksLock);
     [self.callbackBlocks removeAllObjects];
@@ -263,7 +287,7 @@ typedef NSMutableDictionary<NSString *, id> SDCallbacksDictionary;
         self.ownedSession = nil;
     }
 }
-
+//如果我们在声明属性的时候使用了getter=的语义 则需要自己手动写getter 并实现了KVO.
 - (void)setFinished:(BOOL)finished {
     [self willChangeValueForKey:@"isFinished"];
     _finished = finished;
@@ -281,7 +305,7 @@ typedef NSMutableDictionary<NSString *, id> SDCallbacksDictionary;
 }
 
 #pragma mark NSURLSessionDataDelegate
-
+//接收到服务器的响应
 - (void)URLSession:(NSURLSession *)session
           dataTask:(NSURLSessionDataTask *)dataTask
 didReceiveResponse:(NSURLResponse *)response
