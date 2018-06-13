@@ -64,6 +64,7 @@ static char TAG_ACTIVITY_SHOW;
                          completed:(nullable SDExternalCompletionBlock)completedBlock
                            context:(nullable NSDictionary<NSString *, id> *)context {
     NSString *validOperationKey = operationKey ?: NSStringFromClass([self class]);
+    //1.先取消当前的operation
     [self sd_cancelImageLoadOperationWithKey:validOperationKey];
     objc_setAssociatedObject(self, &imageURLKey, url, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
@@ -79,6 +80,7 @@ static char TAG_ACTIVITY_SHOW;
     
     if (url) {
         // check if activityView is enabled or not
+        //获取图片之前，先看看需不需要显示菊花控件，需要的话就添加和下面加载完成后的removeActivityIndicatorView凑成一对。
         if ([self sd_showActivityIndicatorView]) {
             [self sd_addActivityIndicator];
         }
@@ -105,6 +107,7 @@ static char TAG_ACTIVITY_SHOW;
         id <SDWebImageOperation> operation = [manager loadImageWithURL:url options:options progress:combinedProgressBlock completed:^(UIImage *image, NSData *data, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
             __strong __typeof (wself) sself = wself;
             if (!sself) { return; }
+            //移除菊花控件
             [sself sd_removeActivityIndicator];
             // if the progress not been updated, mark it to complete state
             if (finished && !error && sself.sd_imageProgress.totalUnitCount == 0 && sself.sd_imageProgress.completedUnitCount == 0) {
@@ -169,6 +172,7 @@ static char TAG_ACTIVITY_SHOW;
         [self sd_setImageLoadOperation:operation forKey:validOperationKey];
     } else {
         dispatch_main_async_safe(^{
+            //移除菊花控件
             [self sd_removeActivityIndicator];
             if (completedBlock) {
                 NSError *error = [NSError errorWithDomain:SDWebImageErrorDomain code:-1 userInfo:@{NSLocalizedDescriptionKey : @"Trying to load a nil url"}];

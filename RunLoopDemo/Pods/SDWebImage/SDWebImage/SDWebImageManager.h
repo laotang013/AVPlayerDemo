@@ -147,11 +147,11 @@ typedef NSData * _Nullable(^SDWebImageCacheSerializerBlock)(UIImage * _Nonnull i
 
 /**
  * Controls which image should be downloaded when the image is not found in the cache.
+ * 当image无法在缓存中找到,调用该函数控制该image的下载
+ * @param imageManager The current `SDWebImageManager` 当前的`SDWebImageManager`
+ * @param imageURL     The url of the image to be downloaded 需要下载的image的URL
  *
- * @param imageManager The current `SDWebImageManager`
- * @param imageURL     The url of the image to be downloaded
- *
- * @return Return NO to prevent the downloading of the image on cache misses. If not implemented, YES is implied.
+ * @return Return NO to prevent the downloading of the image on cache misses. If not implemented, YES is implied.返回NO表示当图片缓存未命中，反而阻止图片下载。如果该函数没实现，相当于返回YES。
  */
 ///询问代理在查找不到缓存的情况下是否需要根据URL下载图片默认返回YES.如果返回NO,即使缓存未命中也不执行操作
 - (BOOL)imageManager:(nonnull SDWebImageManager *)imageManager shouldDownloadImageForURL:(nullable NSURL *)imageURL;

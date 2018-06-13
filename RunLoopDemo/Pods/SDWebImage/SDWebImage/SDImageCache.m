@@ -493,7 +493,7 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
 
 //通过调用queryCacheOperation方法去请求缓存 通过传入的key从缓存中查找图片，通过回调block的方式返回给调用者
 - (nullable NSOperation *)queryCacheOperationForKey:(nullable NSString *)key options:(SDImageCacheOptions)options done:(nullable SDCacheQueryCompletedBlock)doneBlock {
-    //如果key不存在，执行回调，返回
+    //如果key不存在，说明cache中没有该image.所以downBlock中传入SDImageCacheTypeNone表示cache中没有图片 执行回调，返回
     if (!key) {
         if (doneBlock) {
             doneBlock(nil, nil, SDImageCacheTypeNone);
@@ -577,13 +577,15 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
     if (key == nil) {
         return;
     }
-
+    //既然缓存到了内存,就先将内存缓存中的image移除
     if (self.config.shouldCacheImagesInMemory) {
         [self.memCache removeObjectForKey:key];
     }
-
+   // 如果要删除磁盘缓存中的image
     if (fromDisk) {
+        // 有关io的部分，都要放在ioQueue中
         dispatch_async(self.ioQueue, ^{
+             // 磁盘缓存移除使用的是NSFileManager的removeItemAtPath:error
             [self.fileManager removeItemAtPath:[self defaultCachePathForKey:key] error:nil];
             
             if (completion) {

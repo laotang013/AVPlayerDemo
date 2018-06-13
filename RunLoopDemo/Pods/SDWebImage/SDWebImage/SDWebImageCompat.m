@@ -25,12 +25,16 @@ inline UIImage *SDScaledImageForKey(NSString * _Nullable key, UIImage * _Nullabl
 #if SD_MAC
     return image;
 #elif SD_UIKIT || SD_WATCH
+    // 注释中说出现这种情况的是animated images，也就是动图
+    // 我们常见的是gif图片，所以此处我们就当做gif图片去理解
+    // 可以理解gif图片是一张张静态的图片构成的动画
     if ((image.images).count > 0) {
         //对于animated image进行处理
         //每一帧的图片都要进行scale操作
         NSMutableArray<UIImage *> *scaledImages = [NSMutableArray array];
 
         for (UIImage *tempImage in image.images) {
+            // 使用了递归的方式，构建一组图片动画
             [scaledImages addObject:SDScaledImageForKey(key, tempImage)];
         }
         
@@ -47,6 +51,7 @@ inline UIImage *SDScaledImageForKey(NSString * _Nullable key, UIImage * _Nullabl
 #endif
             //获取缩放比例
             CGFloat scale = 1;
+            // “@2x.png”的长度为7，所以此处添加了这个判断，很巧妙
             if (key.length >= 8) {
                 NSRange range = [key rangeOfString:@"@2x."];
                 if (range.location != NSNotFound) {

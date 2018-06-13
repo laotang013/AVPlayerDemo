@@ -208,16 +208,16 @@ typedef SDHTTPHeadersDictionary * _Nullable (^SDWebImageDownloaderHeadersFilterB
 
 /**
  * Creates a SDWebImageDownloader async downloader instance with a given URL
- *
+ *  如果图片不在缓存中，根据指定的URL下载图片，否则使用缓存中的图片。.
  * The delegate will be informed when the image is finish downloaded or an error has happen.
  *
  * @see SDWebImageDownloaderDelegate
  *
- * @param url            The URL to the image to download
- * @param options        The options to be used for this download
+ * @param url            The URL to the image to download 图片的URL
+ * @param options        The options to be used for this download  该请求所要遵循的选项。（前面已经介绍了两个）
  * @param progressBlock  A block called repeatedly while the image is downloading
- *                       @note the progress block is executed on a background queue
- * @param completedBlock A block called once the download is completed.
+ *                       @note the progress block is executed on a background queue当图片正在下载时调用该block。
+ * @param completedBlock A block called once the download is completed.当操作完成后调用该block。
  *                       If the download succeeded, the image parameter is set, in case of error,
  *                       error parameter is set with the error. The last parameter is always YES
  *                       if SDWebImageDownloaderProgressiveDownload isn't use. With the

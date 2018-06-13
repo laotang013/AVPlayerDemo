@@ -88,6 +88,8 @@ typedef NSMutableDictionary<NSString *, id> SDCallbacksDictionary;
 
 - (nullable id)addHandlersForProgress:(nullable SDWebImageDownloaderProgressBlock)progressBlock
                             completed:(nullable SDWebImageDownloaderCompletedBlock)completedBlock {
+    //url不能为空，是因为每个url要作为NSDictionry变量的key值。而这个字典的value是callbackBlocks。
+    
     SDCallbacksDictionary *callbacks = [NSMutableDictionary new];
     if (progressBlock) callbacks[kProgressCallbackKey] = [progressBlock copy];
     if (completedBlock) callbacks[kCompletedCallbackKey] = [completedBlock copy];
@@ -123,6 +125,9 @@ typedef NSMutableDictionary<NSString *, id> SDCallbacksDictionary;
   让一个NSOperation操作开始，你可以直接调用start 或者将它添加到NSOperationQueue中，添加之后，它会在队列排到他以后自动执行。
  */
 //重写NSOperation的start方法 在里面做处理
+//isExecuting 代表任务正在执行中
+//isFinished 代表任务已经执行完成
+//isCancelled 代表任务已经取消执行
 - (void)start {
     @synchronized (self) {
         if (self.isCancelled) {
@@ -135,9 +140,11 @@ typedef NSMutableDictionary<NSString *, id> SDCallbacksDictionary;
         //进行后台任务的处理
         Class UIApplicationClass = NSClassFromString(@"UIApplication");
         BOOL hasApplication = UIApplicationClass && [UIApplicationClass respondsToSelector:@selector(sharedApplication)];
+        //这里需要提及的就是shouldContinueWhenAppEntersBackground，也就是说下载选项中需要设置SDWebImageDownloaderContinueInBackground。
         if (hasApplication && [self shouldContinueWhenAppEntersBackground]) {
             __weak __typeof__ (self) wself = self;
             UIApplication * app = [UIApplicationClass performSelector:@selector(sharedApplication)];
+            //注意beginBackgroundTaskWithExpirationHandler并不是意味着立即执行后台任务，它只是相当于注册了一个后台任务，函数后面的handler block表示程序在后台运行时间到了后，要运行的代码
             self.backgroundTaskId = [app beginBackgroundTaskWithExpirationHandler:^{
                 __strong __typeof (wself) sself = wself;
 
@@ -180,6 +187,7 @@ typedef NSMutableDictionary<NSString *, id> SDCallbacksDictionary;
             if (!URLCache) {
                 URLCache = [NSURLCache sharedURLCache];
             }
+            //发送的request,服务器会返回一个response，就像获取服务器端的图片一样，如果图片没有改变，第二次获取的时候，最好直接从缓存中获取，
             NSCachedURLResponse *cachedResponse;
             // NSURLCache's `cachedResponseForRequest:` is not thread-safe, see https://developer.apple.com/documentation/foundation/nsurlcache#2317483
             @synchronized (URLCache) {
@@ -247,6 +255,9 @@ typedef NSMutableDictionary<NSString *, id> SDCallbacksDictionary;
 }
 /**
  * 内部方法cancel
+  1.调用自定义的cancelBlock
+  2.任务取消
+  3.回收资源
  */
 - (void)cancelInternal {
     if (self.isFinished) return;
@@ -311,8 +322,10 @@ typedef NSMutableDictionary<NSString *, id> SDCallbacksDictionary;
 didReceiveResponse:(NSURLResponse *)response
  completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler {
     NSURLSessionResponseDisposition disposition = NSURLSessionResponseAllow;
+    //根据response中的expectedContentLength来给self.expectedSize进行赋值
     NSInteger expected = (NSInteger)response.expectedContentLength;
     expected = expected > 0 ? expected : 0;
+    //self.expectedSize此处表示响应的数据体（此处为imageData）期望大小 也就是说imageData最后下载完成大概会这么大
     self.expectedSize = expected;
     self.response = response;
     NSInteger statusCode = [response respondsToSelector:@selector(statusCode)] ? ((NSHTTPURLResponse *)response).statusCode : 200;
@@ -320,6 +333,7 @@ didReceiveResponse:(NSURLResponse *)response
     //'304 Not Modified' is an exceptional one. It should be treated as cancelled if no cache data
     //URLSession current behavior will return 200 status code when the server respond 304 and URLCache hit. But this is not a standard behavior and we just add a check
     if (statusCode == 304 && !self.cachedData) {
+        //当服务端返回statusCode为“304 Not Modified”，意味着服务器端的image并没有改变
         valid = NO;
     }
     
@@ -341,7 +355,7 @@ didReceiveResponse:(NSURLResponse *)response
         completionHandler(disposition);
     }
 }
-
+//获取到数据
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data {
     if (!self.imageData) {
         self.imageData = [[NSMutableData alloc] initWithCapacity:self.expectedSize];
@@ -372,6 +386,7 @@ didReceiveResponse:(NSURLResponse *)response
             UIImage *image = [self.progressiveCoder incrementallyDecodedImageWithData:imageData finished:finished];
             if (image) {
                 NSString *key = [[SDWebImageManager sharedManager] cacheKeyForURL:self.request.URL];
+                //获取图片
                 image = [self scaledImageForKey:key image:image];
                 if (self.shouldDecompressImages) {
                     image = [[SDWebImageCodersManager sharedInstance] decompressedImageWithImage:image data:&imageData options:@{SDWebImageCoderScaleDownLargeImagesKey: @(NO)}];

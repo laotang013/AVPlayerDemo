@@ -142,6 +142,7 @@
             isFailedUrl = [self.failedURLs containsObject:url];
         }
     }
+    //@synchronized 避免多个线程执行同一段代码
     //url.absoluteString完整的url字符串
     if (url.absoluteString.length == 0 || (!(options & SDWebImageRetryFailed) && isFailedUrl)) {
         [self callCompletionBlockForOperation:operation completion:completedBlock error:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorFileDoesNotExist userInfo:nil] url:url];

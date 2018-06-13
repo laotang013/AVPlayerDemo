@@ -219,15 +219,22 @@
 
         // In order to prevent from potential duplicate caching (NSURLCache + SDImageCache) we disable the cache for image requests if told otherwise
         //关闭NSURLCache,防止重复缓存图片请求
+        //在SDWebImage中，缺省情况下，request是不使用NSURLCache的，但是若使用该选项，就默认使用NSURLCache默认的缓存策略：NSURLRequestUseProtocolCachePolicy
         NSURLRequestCachePolicy cachePolicy = options & SDWebImageDownloaderUseNSURLCache ? NSURLRequestUseProtocolCachePolicy : NSURLRequestReloadIgnoringLocalCacheData;
         //初始化URLRequest
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url
                                                                     cachePolicy:cachePolicy
                                                                 timeoutInterval:timeoutInterval];
-        
+        // 如果设置HTTPShouldHandleCookies为YES，就处理存储在NSHTTPCookieStore中的cookies。
+        // HTTPShouldHandleCookies表示是否应该给request设置cookie并随request一起发送出去。
         request.HTTPShouldHandleCookies = (options & SDWebImageDownloaderHandleCookies);
+        // HTTPShouldUsePipelining表示receiver(理解为iOS客户端)的下一个信息是否必须等到上一个请求回复才能发送。
+        // 如果为YES表示可以，NO表示必须等receiver收到先前的回复才能发送下个信息。
         request.HTTPShouldUsePipelining = YES;
         //添加请求头
+        // 如果你设置了SDWebImageDownloader的headersFilter，就是用你自定义的方法，来设置HTTP的header field。
+        // 如果没有自定义，就是用SDWebImage提供的HTTPHeaders。
+        // 简单看下HTTPHeader的初始化部分（如果下载webp图片，需要的header不一样）：
         if (sself.headersFilter) {
             request.allHTTPHeaderFields = sself.headersFilter(url, [sself allHTTPHeaderFields]);
         }
@@ -236,8 +243,12 @@
         }
         //初始化operation对象
         SDWebImageDownloaderOperation *operation = [[sself.operationClass alloc] initWithRequest:request inSession:sself.session options:options];
+        //要不要解压缩图片，解压缩已经下载的图片或者在缓存中的图片可以提高性能，但是会耗费很多空间，缺省情况下是要解压缩图片
         operation.shouldDecompressImages = sself.shouldDecompressImages;
         //指定验证方式
+        //urlCredential是一个NSURLCredential类型。
+        //web 服务可以在返回 http 响应时附带认证要求的challenge，作用是询问 http 请求的发起方是谁，这时发起方应提供正确的用户名和密码（即认证信息），然后 web 服务才会返回真正的 http 响应。
+        //        收到认证要求时，NSURLConnection 的委托对象会收到相应的消息并得到一个 NSURLAuthenticationChallenge 实例。该实例的发送方遵守 NSURLAuthenticationChallengeSender 协议。为了继续收到真实的数据，需要向该发送方向发回一个 NSURLCredential 实例。
         if (sself.urlCredential) {
             //SSL验证
             operation.credential = sself.urlCredential;
@@ -245,7 +256,7 @@
             //Basic验证
             operation.credential = [NSURLCredential credentialWithUser:sself.username password:sself.password persistence:NSURLCredentialPersistenceForSession];
         }
-        
+        //优先级设定 ，优先级越高，执行越早。
         if (options & SDWebImageDownloaderHighPriority) {
             operation.queuePriority = NSOperationQueuePriorityHigh;
         } else if (options & SDWebImageDownloaderLowPriority) {
@@ -255,7 +266,8 @@
         if (sself.executionOrder == SDWebImageDownloaderLIFOExecutionOrder) {
             // Emulate LIFO execution order by systematically adding new operations as last operation's dependency
             /*
-             添加依赖关系 模拟栈的数据结构 先进后出
+             添加依赖关系 模拟栈的数据结构 先进后出 如果执行顺序为LIFO(last in first out，后进先出，栈结构)
+              // 就将新添加的operation作为最后一个operation的依赖，就是说，要执行最后一个operation，必须先执行完新添加的operation，这就实现了栈结构。
              */
             [sself.lastAddedOperation addDependency:operation];
             sself.lastAddedOperation = operation;
@@ -299,6 +311,7 @@
     SDWebImageDownloaderOperation *operation = [self.URLOperations objectForKey:url];
     if (!operation) {
         //operation不存在
+        //如果url是第一次请求，也就是说对应的URLOperations[url]为空 那就新建一个
         //执行operationCallBack回调的代码 初始化SDWebImageDownloaderOperation
         operation = createCallback();
         __weak typeof(self) wself = self;

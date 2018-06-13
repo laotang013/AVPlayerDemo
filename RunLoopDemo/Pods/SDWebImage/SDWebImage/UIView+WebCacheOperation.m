@@ -34,18 +34,24 @@ typedef NSMapTable<NSString *, id<SDWebImageOperation>> SDOperationsDictionary;
 
 - (void)sd_setImageLoadOperation:(nullable id<SDWebImageOperation>)operation forKey:(nullable NSString *)key {
     if (key) {
+        //如果该operation存在，就取消掉了，还要删除这个key对应的object（operation）
         [self sd_cancelImageLoadOperationWithKey:key];
         if (operation) {
             SDOperationsDictionary *operationDictionary = [self sd_operationDictionary];
             @synchronized (self) {
+                //然后重新设置key对应的operation
                 [operationDictionary setObject:operation forKey:key];
             }
         }
     }
 }
-
+// 取消operation  operation 是根据key来索引的。
 - (void)sd_cancelImageLoadOperationWithKey:(nullable NSString *)key {
     // Cancel in progress downloader from queue
+    /*
+     1.先取消索引为key的operation的操作 如果该operation存在去掉掉了，还要删除这个key对应的Object
+     然后重新设置key对应的operation
+     */
     SDOperationsDictionary *operationDictionary = [self sd_operationDictionary];
     id<SDWebImageOperation> operation;
     @synchronized (self) {
