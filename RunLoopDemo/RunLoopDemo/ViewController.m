@@ -13,16 +13,19 @@
 #import "CircurlarSlider.h"
 #import "DrawCircel.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "HETCycleScrollView.h"
+#import "HETScrollViewMoreView.h"
 @interface ViewController ()
-
+@property(nonatomic,copy)NSMutableString *string;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+   
     // Do any additional setup after loading the view, typically from a nib.
-    [self imageViewDemo];
+    [self test6];
 }
 
 -(void)test1
@@ -159,8 +162,90 @@
 {
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(100, 150, 200, 150)];
     [imageView sd_setImageWithURL:[NSURL URLWithString:@"http://200.200.200.58:8981/group2/M01/10/D4/yMjIOlsaOeqACwkDAAPPEkhUZfE899.jpg"] placeholderImage:[UIImage imageNamed:@"integral_icon_shoppingMall"]];
+    imageView.image = [UIImage imageNamed:@"大海"];
     [self.view addSubview:imageView];
     
 }
+
+-(void)test6
+{
+    HETCycleScrollView *cycleView = [[HETCycleScrollView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    cycleView.imageArray = @[@"大海.jpg",@"天空.jpg",@"高山.jpg"];
+
+    [self.view addSubview:cycleView];
+}
+
+-(void)test7
+{
+    HETScrollViewMoreView *scrollView = [[HETScrollViewMoreView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    [self.view addSubview:scrollView];
+}
+
+-(void)test8
+{
+   
+    /*
+     https://www.jianshu.com/p/c477ecb8a4c5
+     使用copy出来的对象都是不可变的对象
+     使用MutableCopy出来的对象都是可变的对象 会产生新的对象
+     
+     */
+    
+    /*NSString *oldString = [NSString stringWithFormat:@"hello"];
+    NSString *newString = [oldString copy];
+    NSLog(@"oldString:%p --newString:%p",oldString,newString);
+    NSLog(@"newString:%@",newString);
+     */
+    //结论：对不可变对象使用copy不产生新对象，只会进行指针拷贝，即浅拷贝，因为都是不可变的对象，不存在修改之后互相影响的情况，所以系统为节约内存，只进行了指针拷贝。
+    
+   /* NSMutableString *oldString = [NSMutableString stringWithFormat:@"hello"];
+    NSString *newString = [oldString copy];
+    [oldString appendString:@"world"];
+    NSLog(@"oldString:%@---newString:%@",oldString,newString);
+    NSLog(@"oldString:%p---newString:%p",oldString,newString);*/
+    //结论: 对可变对象使用copy会产生新的对象，新对象为不可变对象，对新对象或原对象修改不会互相影响。
+    
+    NSString *oldString = [NSString stringWithFormat:@"hello"];
+    NSMutableString *newString = [oldString mutableCopy];
+    [newString appendString:@"world"];
+    NSLog(@"oldString:%@---newString:%@",oldString,newString);
+    NSLog(@"oldString:%p---newString:%p",oldString,newString);
+    //结论 对不可变对象 使用MutableCopy会产生新的对象 新的对象为可变对象 对新对象或原对象修改不会互相影响。
+    
+    
+}
+
+-(void)test10
+{
+    
+    
+    
+    NSString *p = [NSString stringWithFormat:@"123"];
+    NSMutableString *str = [[NSMutableString alloc]initWithString:@"456"];
+    NSString *str1 = [str copy];
+    NSString *c =  [p copy];
+    NSLog(@"p: %p,c: %p str: %p  str1: %p",p,c,str,str1);
+    
+    __block int a =0;
+    NSLog(@"外部变量%p",&a);//栈区
+    void(^foo)(void) = ^{
+        a = 1;
+        int b = 10;
+        NSLog(@"b: %d",b);
+        NSLog(@"内部变量%p",&a);//堆区 copy到堆区了
+    };
+    foo();
+    NSLog(@"变化后的变量%p",&a);//堆区
+    NSLog(@"%d",a);
+    
+    /*
+     1.在block中访问外部变量是复制过去的。即写操作不对原变量生效。
+     2.Block不允许修改外部变量的值，这里所说的外部变量的值，指的是栈中指针的内存地址。__block所起到的作用就是只要观察到该变量被block所持有，就是将外部变量在栈中的内存地址放到了堆中，进而在block内部可以修改外部变量的值。
+     Block不允许修改外部变量的值，这里所说的外部变量的值，指的是栈中指针的内存地址。
+     */
+    
+    
+}
+
 
 @end

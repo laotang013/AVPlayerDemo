@@ -10,29 +10,60 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/SDWebImage/SDWebImage/UIView+WebCache.m"
-            timestampString = "550488326.377906"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
-            landmarkName = "-sd_internalSetImageWithURL:placeholderImage:options:operationKey:setImageBlock:progress:completed:context:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Pods/SDWebImage/SDWebImage/UIView+WebCache.m"
-            timestampString = "550488326.378291"
+            timestampString = "550638749.428851"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "169"
             endingLineNumber = "169"
             landmarkName = "-sd_internalSetImageWithURL:placeholderImage:options:operationKey:setImageBlock:progress:completed:context:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__126-[UIView(WebCache) sd_internalSetImageWithURL:placeholderImage:options:operationKey:setImageBlock:progress:completed:context:]_block_invoke.40"
+                  moduleName = "RunLoopDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Start/AVPlayerDemo/RunLoopDemo/Pods/SDWebImage/SDWebImage/UIView+WebCache.m"
+                  timestampString = "551237196.488553"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "171"
+                  endingLineNumber = "171"
+                  offsetFromSymbolStart = "4190">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_.76"
+                  moduleName = "RunLoopDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Start/AVPlayerDemo/RunLoopDemo/Pods/SDWebImage/SDWebImage/UIView+WebCache.m"
+                  timestampString = "551237196.490947"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "171"
+                  endingLineNumber = "171"
+                  offsetFromSymbolStart = "238">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.77"
+                  moduleName = "RunLoopDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Start/AVPlayerDemo/RunLoopDemo/Pods/SDWebImage/SDWebImage/UIView+WebCache.m"
+                  timestampString = "551237196.4934109"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "171"
+                  endingLineNumber = "171"
+                  offsetFromSymbolStart = "135">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -48,22 +79,6 @@
             startingLineNumber = "497"
             endingLineNumber = "497"
             landmarkName = "-queryCacheOperationForKey:options:done:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Pods/SDWebImage/SDWebImage/UIView+WebCache.m"
-            timestampString = "550488326.378623"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "-sd_internalSetImageWithURL:placeholderImage:options:operationKey:setImageBlock:progress:completed:context:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -186,7 +201,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/SDWebImage/SDWebImage/UIView+WebCache.m"
-            timestampString = "550488326.379065"
+            timestampString = "550638749.4291101"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "105"
@@ -198,31 +213,46 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "-[UIView(WebCache) sd_internalSetImageWithURL:placeholderImage:options:operationKey:setImageBlock:progress:completed:context:]"
+                  symbolName = "__126-[UIView(WebCache) sd_internalSetImageWithURL:placeholderImage:options:operationKey:setImageBlock:progress:completed:context:]_block_invoke.35"
                   moduleName = "RunLoopDemo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Start/AVPlayerDemo/RunLoopDemo/Pods/SDWebImage/SDWebImage/UIView+WebCache.m"
-                  timestampString = "550488326.4884191"
+                  timestampString = "551237196.526009"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "105"
-                  endingLineNumber = "105"
-                  offsetFromSymbolStart = "1899">
+                  startingLineNumber = "106"
+                  endingLineNumber = "106"
+                  offsetFromSymbolStart = "322">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__126-[UIView(WebCache) sd_internalSetImageWithURL:placeholderImage:options:operationKey:setImageBlock:progress:completed:context:]_block_invoke.40"
+                  symbolName = "__copy_helper_block_.36"
                   moduleName = "RunLoopDemo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Start/AVPlayerDemo/RunLoopDemo/Pods/SDWebImage/SDWebImage/UIView+WebCache.m"
-                  timestampString = "550488326.490469"
+                  timestampString = "551237196.5279371"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "106"
                   endingLineNumber = "106"
-                  offsetFromSymbolStart = "206">
+                  offsetFromSymbolStart = "94">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.37"
+                  moduleName = "RunLoopDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Start/AVPlayerDemo/RunLoopDemo/Pods/SDWebImage/SDWebImage/UIView+WebCache.m"
+                  timestampString = "551237196.5303119"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "106"
+                  endingLineNumber = "106"
+                  offsetFromSymbolStart = "55">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -234,7 +264,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/SDWebImage/SDWebImage/UIView+WebCache.m"
-            timestampString = "550488326.379321"
+            timestampString = "550638749.429168"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "110"
@@ -250,7 +280,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/SDWebImage/SDWebImage/UIView+WebCache.m"
-            timestampString = "550488326.379559"
+            timestampString = "550638749.429217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "111"
@@ -266,13 +296,60 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/SDWebImage/SDWebImage/UIView+WebCache.m"
-            timestampString = "550488326.379799"
+            timestampString = "550638749.42926"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "106"
             endingLineNumber = "106"
             landmarkName = "-sd_internalSetImageWithURL:placeholderImage:options:operationKey:setImageBlock:progress:completed:context:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__126-[UIView(WebCache) sd_internalSetImageWithURL:placeholderImage:options:operationKey:setImageBlock:progress:completed:context:]_block_invoke.35"
+                  moduleName = "RunLoopDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Start/AVPlayerDemo/RunLoopDemo/Pods/SDWebImage/SDWebImage/UIView+WebCache.m"
+                  timestampString = "551237196.544127"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "106"
+                  endingLineNumber = "106"
+                  offsetFromSymbolStart = "322">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_.36"
+                  moduleName = "RunLoopDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Start/AVPlayerDemo/RunLoopDemo/Pods/SDWebImage/SDWebImage/UIView+WebCache.m"
+                  timestampString = "551237196.546375"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "106"
+                  endingLineNumber = "106"
+                  offsetFromSymbolStart = "94">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.37"
+                  moduleName = "RunLoopDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Start/AVPlayerDemo/RunLoopDemo/Pods/SDWebImage/SDWebImage/UIView+WebCache.m"
+                  timestampString = "551237196.548974"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "106"
+                  endingLineNumber = "106"
+                  offsetFromSymbolStart = "55">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -305,6 +382,38 @@
             endingLineNumber = "167"
             landmarkName = "-loadImageWithURL:options:progress:completed:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[SDWebImageManager loadImageWithURL:options:progress:completed:]"
+                  moduleName = "RunLoopDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Start/AVPlayerDemo/RunLoopDemo/Pods/SDWebImage/SDWebImage/SDWebImageManager.m"
+                  timestampString = "551237196.558118"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "167"
+                  endingLineNumber = "167"
+                  offsetFromSymbolStart = "1679">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__65-[SDWebImageManager loadImageWithURL:options:progress:completed:]_block_invoke"
+                  moduleName = "RunLoopDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Start/AVPlayerDemo/RunLoopDemo/Pods/SDWebImage/SDWebImage/SDWebImageManager.m"
+                  timestampString = "551237196.560169"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "168"
+                  endingLineNumber = "168"
+                  offsetFromSymbolStart = "113">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -321,6 +430,38 @@
             endingLineNumber = "313"
             landmarkName = "-loadImageWithURL:options:progress:completed:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__65-[SDWebImageManager loadImageWithURL:options:progress:completed:]_block_invoke"
+                  moduleName = "RunLoopDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Start/AVPlayerDemo/RunLoopDemo/Pods/SDWebImage/SDWebImage/SDWebImageManager.m"
+                  timestampString = "551237196.566065"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "313"
+                  endingLineNumber = "313"
+                  offsetFromSymbolStart = "1725">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__65-[SDWebImageManager loadImageWithURL:options:progress:completed:]_block_invoke"
+                  moduleName = "RunLoopDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Start/AVPlayerDemo/RunLoopDemo/Pods/SDWebImage/SDWebImage/SDWebImageManager.m"
+                  timestampString = "551237196.567938"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "313"
+                  endingLineNumber = "313"
+                  offsetFromSymbolStart = "1843">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -362,45 +503,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/SDWebImage/SDWebImage/UIView+WebCache.m"
-            timestampString = "550488326.3803281"
+            timestampString = "550638749.429405"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "156"
             endingLineNumber = "156"
             landmarkName = "-sd_internalSetImageWithURL:placeholderImage:options:operationKey:setImageBlock:progress:completed:context:"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__126-[UIView(WebCache) sd_internalSetImageWithURL:placeholderImage:options:operationKey:setImageBlock:progress:completed:context:]_block_invoke.40"
-                  moduleName = "RunLoopDemo"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Start/AVPlayerDemo/RunLoopDemo/Pods/SDWebImage/SDWebImage/UIView+WebCache.m"
-                  timestampString = "550488326.5200239"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "159"
-                  endingLineNumber = "159"
-                  offsetFromSymbolStart = "2813">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__126-[UIView(WebCache) sd_internalSetImageWithURL:placeholderImage:options:operationKey:setImageBlock:progress:completed:context:]_block_invoke.64"
-                  moduleName = "RunLoopDemo"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Start/AVPlayerDemo/RunLoopDemo/Pods/SDWebImage/SDWebImage/UIView+WebCache.m"
-                  timestampString = "550488326.521471"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "159"
-                  endingLineNumber = "159"
-                  offsetFromSymbolStart = "12">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -410,7 +519,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/SDWebImage/SDWebImage/UIView+WebCache.m"
-            timestampString = "550488326.380566"
+            timestampString = "550638749.429454"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "164"
@@ -422,46 +531,46 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__126-[UIView(WebCache) sd_internalSetImageWithURL:placeholderImage:options:operationKey:setImageBlock:progress:completed:context:]_block_invoke.40"
+                  symbolName = "__126-[UIView(WebCache) sd_internalSetImageWithURL:placeholderImage:options:operationKey:setImageBlock:progress:completed:context:]_block_invoke.64"
                   moduleName = "RunLoopDemo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Start/AVPlayerDemo/RunLoopDemo/Pods/SDWebImage/SDWebImage/UIView+WebCache.m"
-                  timestampString = "550488326.526595"
+                  timestampString = "551237196.5861501"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "168"
-                  endingLineNumber = "168"
-                  offsetFromSymbolStart = "4190">
+                  startingLineNumber = "164"
+                  endingLineNumber = "164"
+                  offsetFromSymbolStart = "29">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__copy_helper_block_.76"
+                  symbolName = "__copy_helper_block_.65"
                   moduleName = "RunLoopDemo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Start/AVPlayerDemo/RunLoopDemo/Pods/SDWebImage/SDWebImage/UIView+WebCache.m"
-                  timestampString = "550488326.528266"
+                  timestampString = "551237196.5882601"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "168"
-                  endingLineNumber = "168"
-                  offsetFromSymbolStart = "238">
+                  startingLineNumber = "164"
+                  endingLineNumber = "164"
+                  offsetFromSymbolStart = "42">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_.77"
+                  symbolName = "__destroy_helper_block_.66"
                   moduleName = "RunLoopDemo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Start/AVPlayerDemo/RunLoopDemo/Pods/SDWebImage/SDWebImage/UIView+WebCache.m"
-                  timestampString = "550488326.530296"
+                  timestampString = "551237196.5904419"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "168"
-                  endingLineNumber = "168"
-                  offsetFromSymbolStart = "135">
+                  startingLineNumber = "164"
+                  endingLineNumber = "164"
+                  offsetFromSymbolStart = "29">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -592,6 +701,38 @@
             endingLineNumber = "216"
             landmarkName = "-loadImageWithURL:options:progress:completed:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__65-[SDWebImageManager loadImageWithURL:options:progress:completed:]_block_invoke"
+                  moduleName = "RunLoopDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Start/AVPlayerDemo/RunLoopDemo/Pods/SDWebImage/SDWebImage/SDWebImageManager.m"
+                  timestampString = "551237196.6202379"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "216"
+                  endingLineNumber = "216"
+                  offsetFromSymbolStart = "1114">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__65-[SDWebImageManager loadImageWithURL:options:progress:completed:]_block_invoke_2"
+                  moduleName = "RunLoopDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Start/AVPlayerDemo/RunLoopDemo/Pods/SDWebImage/SDWebImage/SDWebImageManager.m"
+                  timestampString = "551237196.621937"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "217"
+                  endingLineNumber = "217"
+                  offsetFromSymbolStart = "152">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

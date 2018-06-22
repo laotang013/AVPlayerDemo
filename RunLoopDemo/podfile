@@ -1,10 +1,15 @@
-
+source 'https://github.com/CocoaPods/Specs.git'
+source 'https://github.com/laotang013/PodSpec.git'
 platform :ios, '8.0'
 
 target 'RunLoopDemo’ do
 pod ‘Masonry’,’1.0.0’
 pod 'SDWebImage', '~> 4.3.3'
+pod 'MJRefresh', '~> 3.1.15.3'
+pod 'TestDemo’
+#,  :path => "/Users/Start/.cocoapods/repos/PodSpec/TestDemo/1.0.0/"
 end
 
 
 inhibit_all_warnings!
+

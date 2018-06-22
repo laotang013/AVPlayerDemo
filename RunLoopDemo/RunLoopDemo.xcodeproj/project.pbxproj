@@ -18,6 +18,14 @@
 		C969D95C20BF918B00DC02D2 /* ImageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C969D95B20BF918B00DC02D2 /* ImageControl.m */; };
 		C969D95F20BFE64100DC02D2 /* CircurlarSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = C969D95E20BFE64100DC02D2 /* CircurlarSlider.m */; };
 		C96D943720C0D7B90075F4B1 /* DrawCircel.m in Sources */ = {isa = PBXBuildFile; fileRef = C96D943620C0D7B90075F4B1 /* DrawCircel.m */; };
+		C996B3B320D20E4600BC03E6 /* HETCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = C996B3B220D20E4600BC03E6 /* HETCycleScrollView.m */; };
+		C996B3B620D259C400BC03E6 /* HETContentImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C996B3B520D259C400BC03E6 /* HETContentImageView.m */; };
+		C996B3BC20D2646F00BC03E6 /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C996B3B720D2646E00BC03E6 /* bg.jpg */; };
+		C996B3BD20D2646F00BC03E6 /* 高山.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C996B3B820D2646E00BC03E6 /* 高山.jpg */; };
+		C996B3BE20D2646F00BC03E6 /* 天空.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C996B3B920D2646F00BC03E6 /* 天空.jpg */; };
+		C996B3BF20D2646F00BC03E6 /* 森林.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C996B3BA20D2646F00BC03E6 /* 森林.jpg */; };
+		C996B3C020D2646F00BC03E6 /* 大海.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C996B3BB20D2646F00BC03E6 /* 大海.jpg */; };
+		C996B3C320D26E5B00BC03E6 /* HETScrollViewMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = C996B3C220D26E5B00BC03E6 /* HETScrollViewMoreView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +61,17 @@
 		C969D95E20BFE64100DC02D2 /* CircurlarSlider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CircurlarSlider.m; sourceTree = "<group>"; };
 		C96D943520C0D7B90075F4B1 /* DrawCircel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawCircel.h; sourceTree = "<group>"; };
 		C96D943620C0D7B90075F4B1 /* DrawCircel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawCircel.m; sourceTree = "<group>"; };
+		C996B3B120D20E4600BC03E6 /* HETCycleScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HETCycleScrollView.h; sourceTree = "<group>"; };
+		C996B3B220D20E4600BC03E6 /* HETCycleScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HETCycleScrollView.m; sourceTree = "<group>"; };
+		C996B3B420D259C400BC03E6 /* HETContentImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HETContentImageView.h; sourceTree = "<group>"; };
+		C996B3B520D259C400BC03E6 /* HETContentImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HETContentImageView.m; sourceTree = "<group>"; };
+		C996B3B720D2646E00BC03E6 /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpg; sourceTree = "<group>"; };
+		C996B3B820D2646E00BC03E6 /* 高山.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "高山.jpg"; sourceTree = "<group>"; };
+		C996B3B920D2646F00BC03E6 /* 天空.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "天空.jpg"; sourceTree = "<group>"; };
+		C996B3BA20D2646F00BC03E6 /* 森林.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "森林.jpg"; sourceTree = "<group>"; };
+		C996B3BB20D2646F00BC03E6 /* 大海.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "大海.jpg"; sourceTree = "<group>"; };
+		C996B3C120D26E5B00BC03E6 /* HETScrollViewMoreView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HETScrollViewMoreView.h; sourceTree = "<group>"; };
+		C996B3C220D26E5B00BC03E6 /* HETScrollViewMoreView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HETScrollViewMoreView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,8 +134,19 @@
 				C969D95E20BFE64100DC02D2 /* CircurlarSlider.m */,
 				C96D943520C0D7B90075F4B1 /* DrawCircel.h */,
 				C96D943620C0D7B90075F4B1 /* DrawCircel.m */,
+				C996B3C120D26E5B00BC03E6 /* HETScrollViewMoreView.h */,
+				C996B3C220D26E5B00BC03E6 /* HETScrollViewMoreView.m */,
+				C996B3B120D20E4600BC03E6 /* HETCycleScrollView.h */,
+				C996B3B220D20E4600BC03E6 /* HETCycleScrollView.m */,
+				C996B3B420D259C400BC03E6 /* HETContentImageView.h */,
+				C996B3B520D259C400BC03E6 /* HETContentImageView.m */,
 				C9671A8220BD4A2D00390FC8 /* Main.storyboard */,
 				C9671A8520BD4A2D00390FC8 /* Assets.xcassets */,
+				C996B3BB20D2646F00BC03E6 /* 大海.jpg */,
+				C996B3B820D2646E00BC03E6 /* 高山.jpg */,
+				C996B3BA20D2646F00BC03E6 /* 森林.jpg */,
+				C996B3B920D2646F00BC03E6 /* 天空.jpg */,
+				C996B3B720D2646E00BC03E6 /* bg.jpg */,
 				C9671A8720BD4A2D00390FC8 /* LaunchScreen.storyboard */,
 				C9671A8A20BD4A2D00390FC8 /* Info.plist */,
 				C9671A8B20BD4A2D00390FC8 /* main.m */,
@@ -227,8 +257,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C996B3BE20D2646F00BC03E6 /* 天空.jpg in Resources */,
+				C996B3BD20D2646F00BC03E6 /* 高山.jpg in Resources */,
 				C9671A8920BD4A2D00390FC8 /* LaunchScreen.storyboard in Resources */,
+				C996B3C020D2646F00BC03E6 /* 大海.jpg in Resources */,
+				C996B3BF20D2646F00BC03E6 /* 森林.jpg in Resources */,
 				C9671A8620BD4A2D00390FC8 /* Assets.xcassets in Resources */,
+				C996B3BC20D2646F00BC03E6 /* bg.jpg in Resources */,
 				C9671A8420BD4A2D00390FC8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -249,9 +284,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-RunLoopDemo/Pods-RunLoopDemo-resources.sh",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -299,9 +337,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9671A8120BD4A2D00390FC8 /* ViewController.m in Sources */,
+				C996B3C320D26E5B00BC03E6 /* HETScrollViewMoreView.m in Sources */,
 				C969D95C20BF918B00DC02D2 /* ImageControl.m in Sources */,
+				C996B3B620D259C400BC03E6 /* HETContentImageView.m in Sources */,
 				C969D95F20BFE64100DC02D2 /* CircurlarSlider.m in Sources */,
 				C9671A8C20BD4A2D00390FC8 /* main.m in Sources */,
+				C996B3B320D20E4600BC03E6 /* HETCycleScrollView.m in Sources */,
 				C9671A7E20BD4A2D00390FC8 /* AppDelegate.m in Sources */,
 				C96D943720C0D7B90075F4B1 /* DrawCircel.m in Sources */,
 			);
